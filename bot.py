@@ -45,7 +45,7 @@ async def signup (ctx, weeek: int, boss_number: int, boss_damge: int):
 
 @bot.command(name='showmy', help='秀出自己的刀')
 async def showmy (ctx):
-    response3=''
+    response2='```'
     dbfile = "pcrd.db"
     conn = sqlite3.connect(dbfile)
     conn.row_factory = sqlite3.Row
@@ -54,15 +54,22 @@ async def showmy (ctx):
     rows = cur.fetchall()
     for row in rows:
             print("{}\t".format(field), end="")
-            response3="{}\t{}\t{}\t{}\t{}\n".format(row['id'],row['member'], row['week'], row['boss'], row['damge']) +response3
+            response2="|{}".format(row['damge'])+" "*(16-len(str(row['damge'])))+"|" +response2
+            response2="|{}".format(row['boss'])+" "*(6-len(str(row['boss'])))+response2
+            response2="|{}".format(row['week'])+" "*(6-len(str(row['week'])))+response2
+            response2="|{}".format(row['member'])+" "*(16-len(str(row['member'])))+response2
+            response2="|{}".format(row['id'])+" "*(5-len(str(row['id'])))+response2
+            response2="\n+-----+----------------+------+------+----------------+\n"+response2
+
     conn.close()
-    await ctx.send('PID\tmember\t周目\t王\t傷害')
+    await ctx.send('```| PID |     Member     | Week | Boss |     Damgee     |\n+-----+----------------+------+------+----------------+```')
+    response2='```'+response2
     await ctx.send(response3) 
     
 @bot.command(name='showall', help='秀出全部周目的報名表')
 async def showall(ctx):
     
-    response2=''
+    response2='```'
     dbfile = "pcrd.db"
     conn = sqlite3.connect(dbfile)
     conn.row_factory = sqlite3.Row
@@ -71,15 +78,21 @@ async def showall(ctx):
     rows = cur.fetchall()
     for row in rows:
             print("{}\t".format(field), end="")
-            response2="{}\t{}\t{}\t{}\t{}\n".format(row['id'],row['member'], row['week'], row['boss'], row['damge']) +response2
+            response2="|{}".format(row['damge'])+" "*(16-len(str(row['damge'])))+"|" +response2
+            response2="|{}".format(row['boss'])+" "*(6-len(str(row['boss'])))+response2
+            response2="|{}".format(row['week'])+" "*(6-len(str(row['week'])))+response2
+            response2="|{}".format(row['member'])+" "*(16-len(str(row['member'])))+response2
+            response2="|{}".format(row['id'])+" "*(5-len(str(row['id'])))+response2
+            response2="\n+-----+----------------+------+------+----------------+\n"+response2
     conn.close()
-    await ctx.send('PID\tmember\t周目\t王\t傷害')
+    await ctx.send('```| PID |     Member     | Week | Boss |     Damge      |\n+-----+----------------+------+------+----------------+```')
+    response2='```'+response2
     await ctx.send(response2)
     
 @bot.command(name='show', help='秀出指定周目的報名表')
 async def show(ctx, weeek: int):
     
-    response2=''
+    response2='```'
     dbfile = "pcrd.db"
     conn = sqlite3.connect(dbfile)
     conn.row_factory = sqlite3.Row
@@ -88,15 +101,21 @@ async def show(ctx, weeek: int):
     rows = cur.fetchall()
     for row in rows:
             print("{}\t".format(field), end="")
-            response2="{}\t{}\t{}\t{}\t{}\n".format(row['id'],row['member'], row['week'], row['boss'], row['damge']) +response2
+            response2="|{}".format(row['damge'])+" "*(16-len(str(row['damge'])))+"|" +response2
+            response2="|{}".format(row['boss'])+" "*(6-len(str(row['boss'])))+response2
+            response2="|{}".format(row['week'])+" "*(6-len(str(row['week'])))+response2
+            response2="|{}".format(row['member'])+" "*(16-len(str(row['member'])))+response2
+            response2="|{}".format(row['id'])+" "*(5-len(str(row['id'])))+response2
+            response2="\n+-----+----------------+------+------+----------------+\n"+response2
     conn.close()
-    await ctx.send('PID\tmember\t周目\t王\t傷害')
+    await ctx.send('```| PID |     Member     | Week | Boss |     Damge      |\n+-----+----------------+------+------+----------------+```')
+    response2='```'+response2
     await ctx.send(response2)
 
 @bot.command(name='showsp', help='秀出指定周目區間的報名表')
 async def showsp(ctx, weeek1: int, weeek2: int):
     
-    response2=''
+    response2='```'
     dbfile = "pcrd.db"
     conn = sqlite3.connect(dbfile)
     conn.row_factory = sqlite3.Row
@@ -105,9 +124,15 @@ async def showsp(ctx, weeek1: int, weeek2: int):
     rows = cur.fetchall()
     for row in rows:
             print("{}\t".format(field), end="")
-            response2="{}\t{}\t{}\t{}\t{}\n".format(row['id'],row['member'], row['week'], row['boss'], row['damge']) +response2
+            response2="|{}".format(row['damge'])+" "*(16-len(str(row['damge'])))+"|" +response2
+            response2="|{}".format(row['boss'])+" "*(6-len(str(row['boss'])))+response2
+            response2="|{}".format(row['week'])+" "*(6-len(str(row['week'])))+response2
+            response2="|{}".format(row['member'])+" "*(16-len(str(row['member'])))+response2
+            response2="|{}".format(row['id'])+" "*(5-len(str(row['id'])))+response2
+            response2="\n+-----+----------------+------+------+----------------+\n"+response2
     conn.close()
-    await ctx.send('PID\tmember\t周目\t王\t傷害')
+    await ctx.send('```| PID |     Member     | Week | Boss |     Damgee     |\n+-----+----------------+------+------+----------------+```')
+    response2='```'+response2
     await ctx.send(response2)
     
 @bot.command(name='delb', help='刪除指定的報名表')
